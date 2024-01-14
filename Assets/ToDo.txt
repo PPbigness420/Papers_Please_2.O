@@ -1,0 +1,14 @@
+sutvarkyti passport pickups
+pabaigti piesti
+sutvarkti stamps
+pasu davimas/atidavimas (fix passport spazing out)
+dialogas
+home stuff/ sum up screen (kur isleisti pinigus)
+issaugoti progress
+sfx / muzikyte
+intro screen revamp
+fake info generation
+daugiau daiktu dadet
+citation davimas
+animate background, ppl walking
+add achivment items (posters,poloroid camera , etc.)

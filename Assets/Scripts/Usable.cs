@@ -14,6 +14,8 @@ public class Usable : MonoBehaviour
     public TextMeshPro textSex;
     public TextMeshPro textCity;
     public TextMeshPro textDate;
+    public TextMeshPro textCode;
+    public TextMeshPro textName;
 
 
     private BoxCollider2D bc;
@@ -24,7 +26,6 @@ public class Usable : MonoBehaviour
         RandomPassport();
         spr = GetComponent<SpriteRenderer>();
         bc = GetComponent<BoxCollider2D>();
-        
     }
     /*
      * reikia normalu mouse pos gaut kad veiktu
@@ -52,9 +53,11 @@ public class Usable : MonoBehaviour
             spr.sprite = closed;
             ShowText(false);
         }
+        
     }
     void ShowText(bool doShow)
     {
+        // kad ant uzdaryto paso nerodytu teksto
         if (doShow)
         {
             textCity.enabled = true;
@@ -70,9 +73,13 @@ public class Usable : MonoBehaviour
     }
     void RandomPassport()
     {
+        //kuriami atsitiktiniai duomenys pasui
         int rngS = Random.Range(0, 10);
         int rngC = Random.Range(0, 3);
-        //int rngD = Random.Range(0, 10);
+        int rngD = Random.Range(0,35);
+        int rngN = Random.Range(0,3);
+        int rngT = Random.seed;
+        
 
         if (rngS >= 5f) textSex.text = "M";
         else textSex.text = "F";
@@ -80,6 +87,37 @@ public class Usable : MonoBehaviour
         if (rngC == 0) textCity.text = "Miestas1";
         else if (rngC == 1) textCity.text = "Miestas2";
         else if (rngC == 2) textCity.text = "Miestas3";
-        // dar Date ir code reikia
+
+        if (rngD>30f)
+        {
+            var temporry = rngD - 30f;
+            textDate.text = "1999.07.0" +temporry;
+        }
+        else
+        {
+            if (rngD>10)
+            {
+                textDate.text = "1999.06." + rngD;
+            }
+            else
+            {
+                textDate.text = "1999.06.0" + rngD;
+            }
+            
+        }
+        textCode.text = rngT.ToString();
+        //textName no workey
+        if (rngN == 0)
+        {
+            textName.text = "vardas1";
+        }
+        else if (rngN == 1)
+        {
+            textName.text = "vardas2";
+        }
+        else
+        {
+            textName.text = "vardas3";
+        }
     }
 }

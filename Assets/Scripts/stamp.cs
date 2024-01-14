@@ -12,16 +12,11 @@ public class stamp : MonoBehaviour
         if (!isextended)
         {
             transform.position = new Vector3(transform.position.x - distance, transform.position.y, transform.position.z);
-            print("lol1");
-            
         }
         else
         {
             transform.position = new Vector3(transform.position.x + distance, transform.position.y, transform.position.z);
-            print("lol2");
         }
         isextended = !isextended;
-
     }
-   
 }
