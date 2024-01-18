@@ -10,6 +10,14 @@ public class Usable : MonoBehaviour
     public float closedSize;
     public Sprite opend;
     public float opendSize;
+
+    public bool isaprooved=false;
+    public bool isdenyed= false;
+
+    
+    public SpriteRenderer render;
+   
+
     //public TextMeshPro textCode;
     public TextMeshPro textSex;
     public TextMeshPro textCity;
@@ -23,23 +31,28 @@ public class Usable : MonoBehaviour
     SpriteRenderer spr;
     void Start()
     {
+        
         RandomPassport();
         spr = GetComponent<SpriteRenderer>();
         bc = GetComponent<BoxCollider2D>();
     }
-    /*
-     * reikia normalu mouse pos gaut kad veiktu
+    
+     
     private void OnMouseDrag()
     {
-        transform.position = new Vector3(Input.mousePosition.x- bc.bounds.size.x, Input.mousePosition.y- bc.bounds.size.y, 0f);
-        
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+        transform.position = mousePos;
+
     }
-    */
+    
     
     
     void Update()
     {
+        
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+        
         //kad pasas atidarytu, uzsidarytu jei yra tam tikroje vietoje
         if (transform.position.x>opeinningPoint)
         {
@@ -53,6 +66,21 @@ public class Usable : MonoBehaviour
             spr.sprite = closed;
             ShowText(false);
         }
+
+
+        if (isdenyed)
+        {
+            
+            render.color = Color.red;
+        }
+        if (isaprooved)
+        {
+            
+            render.color = Color.green;
+
+        }
+        
+        
         
     }
     void ShowText(bool doShow)
@@ -63,12 +91,20 @@ public class Usable : MonoBehaviour
             textCity.enabled = true;
             textDate.enabled = true;
             textSex.enabled = true;
+            textCode.enabled = true;
+            textName.enabled = true;
+            render.enabled = true;
+
         }
         else
         {
             textCity.enabled = false;
             textDate.enabled = false;
             textSex.enabled = false;
+            textCode.enabled = false;
+            textName.enabled = false;
+            render.enabled = false;
+            
         }
     }
     void RandomPassport()
@@ -78,7 +114,9 @@ public class Usable : MonoBehaviour
         int rngC = Random.Range(0, 3);
         int rngD = Random.Range(0,35);
         int rngN = Random.Range(0,3);
-        int rngT = Random.seed;
+        int rngT = Random.seed *-1;
+
+        
         
 
         if (rngS >= 5f) textSex.text = "M";
