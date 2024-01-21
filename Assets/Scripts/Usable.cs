@@ -14,9 +14,17 @@ public class Usable : MonoBehaviour
     public bool isaprooved=false;
     public bool isdenyed= false;
 
+    public bool canGive;
+    public bool isDropped;
+
     
-    public SpriteRenderer render;
-   
+    public SpriteRenderer aprovedArt;
+    public SpriteRenderer denyedArt;
+
+    //Give Pop Up
+    public GameObject popup;
+
+
 
     //public TextMeshPro textCode;
     public TextMeshPro textSex;
@@ -24,6 +32,8 @@ public class Usable : MonoBehaviour
     public TextMeshPro textDate;
     public TextMeshPro textCode;
     public TextMeshPro textName;
+    public SpriteRenderer photo;
+    public GameObject photoObj;
 
 
     private BoxCollider2D bc;
@@ -45,43 +55,57 @@ public class Usable : MonoBehaviour
         transform.position = mousePos;
 
     }
-    
-    
-    
+
+    private void OnMouseUp()
+    {
+        isDropped = true;
+    }
+
     void Update()
     {
         
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
-        
+
+        if (isdenyed)
+        {
+            aprovedArt.enabled = false;
+            denyedArt.enabled = true;
+
+        }
+        else if (isaprooved)
+        {
+            aprovedArt.enabled = true;
+            denyedArt.enabled = false;
+
+        }
+
         //kad pasas atidarytu, uzsidarytu jei yra tam tikroje vietoje
         if (transform.position.x>opeinningPoint)
         {
             transform.localScale = new Vector3(opendSize, opendSize, opendSize);
             spr.sprite = opend;
             ShowText(true);
+            popup.gameObject.SetActive(false);
         }
         else
         {
             transform.localScale = new Vector3(closedSize,closedSize,closedSize);
             spr.sprite = closed;
             ShowText(false);
+            if (canGive)
+            {
+                popup.gameObject.SetActive(true);
+            }
+            else
+            {
+                popup.gameObject.SetActive(false);
+            }
+
         }
-
-
-        if (isdenyed)
+        if (isDropped)
         {
-            
-            render.color = Color.red;
+            Invoke("DropCoold",0.001f);
         }
-        if (isaprooved)
-        {
-            
-            render.color = Color.green;
-
-        }
-        
-        
-        
     }
     void ShowText(bool doShow)
     {
@@ -93,7 +117,17 @@ public class Usable : MonoBehaviour
             textSex.enabled = true;
             textCode.enabled = true;
             textName.enabled = true;
-            render.enabled = true;
+            photoObj.gameObject.SetActive(true);
+            if (isdenyed)
+            {
+                aprovedArt.enabled = false;
+                denyedArt.enabled = true;
+            }
+            else if (isaprooved)
+            {
+                aprovedArt.enabled = true;
+                denyedArt.enabled = false;
+            }
 
         }
         else
@@ -103,18 +137,23 @@ public class Usable : MonoBehaviour
             textSex.enabled = false;
             textCode.enabled = false;
             textName.enabled = false;
-            render.enabled = false;
-            
+            denyedArt.enabled = false;
+            aprovedArt.enabled = false;
+            photoObj.gameObject.SetActive(false);
         }
     }
-    void RandomPassport()
+    public void RandomPassport()
     {
         //kuriami atsitiktiniai duomenys pasui
         int rngS = Random.Range(0, 10);
         int rngC = Random.Range(0, 3);
-        int rngD = Random.Range(0,35);
+        int rngD = Random.Range(0,38);
         int rngN = Random.Range(0,3);
-        int rngT = Random.seed *-1;
+        int rngT= Random.seed;
+        if (rngT<0)
+        {
+            rngT *= -1;
+        }
 
         
         
@@ -157,5 +196,10 @@ public class Usable : MonoBehaviour
         {
             textName.text = "vardas3";
         }
+    }
+
+    public void DropCoold()
+    {
+        isDropped = false;
     }
 }

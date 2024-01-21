@@ -800,7 +800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91034d5682ff1e4494073970d8ce6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
 --- !u!61 &921731579
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1058,7 +1057,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91034d5682ff1e4494073970d8ce6f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
 --- !u!1 &1748753923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de04738e8889dd4e98b7b83830ae578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: GameSelect
+  scene: GameScene
 --- !u!1 &1985759306
 GameObject:
   m_ObjectHideFlags: 0

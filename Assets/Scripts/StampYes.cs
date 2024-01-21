@@ -10,7 +10,8 @@ public class StampNo : MonoBehaviour
     {
         
             passport.isaprooved = !passport.isaprooved;
-            
+            passport.isdenyed = false;
+
 
     }
 }
