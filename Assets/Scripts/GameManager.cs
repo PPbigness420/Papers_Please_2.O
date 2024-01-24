@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -56,13 +54,10 @@ public class GameManager : MonoBehaviour
     public int cor=0;
     public int wrong=0;
 
-
-
     private void Start()
     {
         passport.textSex.text = "M";
     }
-
 
     void Update()
     {
@@ -117,7 +112,7 @@ public class GameManager : MonoBehaviour
             passport.opend = sprtieYellowO;
             passport.closed = sprtieYellowC;
         }
-    
+        GenerateTV();
     }
     void ShowUp()
     {
@@ -250,11 +245,7 @@ public class GameManager : MonoBehaviour
 
                 tvD.text = passport.textDate.text;
                 D = true;
-            }
-           
-                
-            
-            
+            }             
         }
     }
 
